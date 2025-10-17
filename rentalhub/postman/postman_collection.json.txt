@@ -1,0 +1,212 @@
+{
+  "info": {
+    "name": "Fulköping RentalHub API",
+    "_postman_id": "7f6f5d2b-7b5b-4b1a-8f8b-111111111111",
+    "description": "Samling för RentalHub med DTO-svar och API-nyckel i headern.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Assets",
+      "item": [
+        {
+          "name": "List all assets",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/assets", "host": ["{{baseUrl}}"], "path": ["api","assets"] }
+          }
+        },
+        {
+          "name": "List available assets",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/assets/available", "host": ["{{baseUrl}}"], "path": ["api","assets","available"] }
+          }
+        },
+        {
+          "name": "Create asset",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetName\": \"Borrmaskin\",\n  \"category\": \"Verktyg\",\n  \"dailyRate\": 150.0,\n  \"available\": true\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/assets", "host": ["{{baseUrl}}"], "path": ["api","assets"] }
+          }
+        },
+        {
+          "name": "Update asset (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetName\": \"Borrmaskin PRO\",\n  \"category\": \"Verktyg\",\n  \"dailyRate\": 175.0,\n  \"available\": true\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/assets/1", "host": ["{{baseUrl}}"], "path": ["api","assets","1"] }
+          }
+        },
+        {
+          "name": "Delete asset",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/assets/1", "host": ["{{baseUrl}}"], "path": ["api","assets","1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "List all customers",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/customers", "host": ["{{baseUrl}}"], "path": ["api","customers"] }
+          }
+        },
+        {
+          "name": "Create customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Anna\",\n  \"lastName\": \"Karlsson\",\n  \"email\": \"anna.karlsson@example.com\",\n  \"phone\": \"0701111111\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/customers", "host": ["{{baseUrl}}"], "path": ["api","customers"] }
+          }
+        },
+        {
+          "name": "Update customer (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Anna\",\n  \"lastName\": \"Karlsson\",\n  \"email\": \"anna.karlsson@example.com\",\n  \"phone\": \"070-111 11 11\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/customers/1", "host": ["{{baseUrl}}"], "path": ["api","customers","1"] }
+          }
+        },
+        {
+          "name": "Delete customer",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/customers/1", "host": ["{{baseUrl}}"], "path": ["api","customers","1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rentals",
+      "item": [
+        {
+          "name": "Create booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2025-10-16\",\n  \"note\": \"Akutjobb\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rentals/book/1/customer/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","rentals","book","1","customer","1"]
+            }
+          }
+        },
+        {
+          "name": "Return (close booking)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/rentals/return/1", "host": ["{{baseUrl}}"], "path": ["api","rentals","return","1"] }
+          }
+        },
+        {
+          "name": "History by asset",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/rentals/history/asset/1", "host": ["{{baseUrl}}"], "path": ["api","rentals","history","asset","1"] }
+          }
+        },
+        {
+          "name": "History by customer",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/rentals/history/customer/1", "host": ["{{baseUrl}}"], "path": ["api","rentals","history","customer","1"] }
+          }
+        },
+        {
+          "name": "List all bookings (optional)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/rentals", "host": ["{{baseUrl}}"], "path": ["api","rentals"] }
+          }
+        },
+        {
+          "name": "Delete booking (optional)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/rentals/1", "host": ["{{baseUrl}}"], "path": ["api","rentals","1"] }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": []
+}
